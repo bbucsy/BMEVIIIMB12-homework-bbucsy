@@ -3,7 +3,11 @@ class PhotosController < ApplicationController
 
   # GET /photos or /photos.json
   def index
-    @photos = Photo.all
+
+    sort_column = params[:sort] || "created_at"
+    sort_direction = params[:direction].presence_in(%w[asc desc]) || "desc"
+
+    @photos =  Photo.order("#{sort_column} #{sort_direction}").page(params[:page]).per(10)
   end
 
   # GET /photos/1 or /photos/1.json

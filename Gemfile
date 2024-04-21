@@ -69,3 +69,5 @@ group :test do
 end
 
 gem "active_storage_validations", "~> 1.1"
+
+gem "kaminari", "~> 1.2"

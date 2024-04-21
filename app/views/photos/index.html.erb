@@ -3,12 +3,31 @@
 <h1>Photos</h1>
 
 <div id="photos">
-  <% @photos.each do |photo| %>
-    <%= render photo %>
-    <p>
-      <%= link_to "Show this photo", photo %>
-    </p>
-  <% end %>
+  <table>
+    <thead >
+    <tr>
+      <%= sortable_table_header 'ID', :id, :photos_path, class: '' %>
+      <%= sortable_table_header 'Name', :name, :photos_path, class: '' %>
+      <%= sortable_table_header 'Uploaded at', :created_at, :photos_path, class: '' %>
+    </tr>
+    </thead>
+    <tbody>
+    <% @photos.each do | photo |  %>
+      <tr>
+        <td class="td">
+          <%= photo.id %>
+        </td>
+        <td class="">
+          <%= photo.name %>
+        </td>
+        <td class="">
+          <%= photo.created_at.strftime('%m/%d/%Y') %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= paginate @photos , window: 2%>
 </div>
 
 <%= link_to "New photo", new_photo_path %>

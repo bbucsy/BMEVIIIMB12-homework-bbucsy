@@ -14,7 +14,7 @@ TEMPLATE_IMAGE_PATH = Rails.root.join('db', 'images', 'placeholder.jpg')
 puts "purging db"
 Photo.delete_all
 
-20.times do |i|
+100.times do |i|
 
   puts "Creating fake image ##{i}"
   # Generate a fake name using Faker
