@@ -1,26 +1,21 @@
 class PhotosController < ApplicationController
-  before_action :set_photo, only: %i[ show edit update destroy ]
+  before_action :set_photo, only: %i[ destroy ]
 
   # GET /photos or /photos.json
   def index
 
     sort_column = params[:sort] || "created_at"
+    if sort_column == "name"
+      sort_column = 'LOWER(name)'
+    end
     sort_direction = params[:direction].presence_in(%w[asc desc]) || "desc"
 
-    @photos =  Photo.order("#{sort_column} #{sort_direction}").page(params[:page]).per(10)
-  end
-
-  # GET /photos/1 or /photos/1.json
-  def show
+    @photos = Photo.order("#{sort_column} #{sort_direction}").page(params[:page]).per(10)
   end
 
   # GET /photos/new
   def new
     @photo = Photo.new
-  end
-
-  # GET /photos/1/edit
-  def edit
   end
 
   # POST /photos or /photos.json
@@ -29,23 +24,10 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       if @photo.save
-        format.html { redirect_to photo_url(@photo), notice: "Photo was successfully created." }
-        format.json { render :show, status: :created, location: @photo }
+        format.html { redirect_to photos_url, notice: "Photo was successfully created." }
+        format.json { render json: @photo }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /photos/1 or /photos/1.json
-  def update
-    respond_to do |format|
-      if @photo.update(photo_params)
-        format.html { redirect_to photo_url(@photo), notice: "Photo was successfully updated." }
-        format.json { render :show, status: :ok, location: @photo }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @photo.errors, status: :unprocessable_entity }
       end
     end
@@ -62,13 +44,14 @@ class PhotosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_photo
-      @photo = Photo.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def photo_params
-      params.require(:photo).permit(:name, :image)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_photo
+    @photo = Photo.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def photo_params
+    params.require(:photo).permit(:name, :image)
+  end
 end

@@ -1,9 +1,39 @@
-<h1>New photo</h1>
+<h1>Add new photo</h1>
 
-<%= render "form", photo: @photo %>
+<%= form_with(model: @photo) do |form| %>
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control', required: true %>
+    <div style="color: red">
+      <% if @photo.errors.include?(:name) %>
+        <% @photo.errors.full_messages_for(:name).each do |error_message| %>
+          <%= error_message %>.
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 
-<br>
 
-<div>
-  <%= link_to "Back to photos", photos_path %>
-</div>
+  <div class="mb-3 ">
+    <%= form.label :image, class: 'form-label' %>
+    <%= form.file_field :image, accept: 'image/png, image/jpeg', class: 'form-control', required: true %>
+    <div style="color: red">
+      <% if @photo.errors.include?(:image) %>
+        <% @photo.errors.full_messages_for(:image).each do |error_message| %>
+          <%= error_message %>.
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="d-grid gap-2 d-md-block">
+    <%= link_to "Back to photos", photos_path, class: 'btn btn-secondary' %>
+    <button type="submit" class="btn btn-primary">Add photo</button>
+  </div>
+
+<% end %>
+
+
+
+
