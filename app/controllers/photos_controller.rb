@@ -1,5 +1,10 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: %i[ destroy ]
+  http_basic_authenticate_with(
+    name: Rails.application.credentials.dig(:login, :username),
+    password: Rails.application.credentials.dig(:login, :password),
+  ) if Rails.env.production?
+
 
   # GET /photos or /photos.json
   def index

@@ -8,29 +8,32 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-require 'faker'
-TEMPLATE_IMAGE_PATH = Rails.root.join('db', 'images', 'placeholder.jpg')
+if Rails.env.development?
 
-puts "purging db"
-Photo.delete_all
+  require 'faker'
+  TEMPLATE_IMAGE_PATH = Rails.root.join('db', 'images', 'placeholder.jpg')
 
-100.times do |i|
+  puts "purging db"
+  Photo.delete_all
 
-  puts "Creating fake image ##{i}"
-  # Generate a fake name using Faker
-  name = Faker::Movie.title
+  100.times do |i|
 
-  # Create a new Photo instance with the generated name
-  time = Faker::Date.between(from: '2014-09-23', to: Date.today)
+    puts "Creating fake image ##{i}"
+    # Generate a fake name using Faker
+    name = Faker::Movie.title
 
-  photo = Photo.new(name: name, created_at: time)
+    # Create a new Photo instance with the generated name
+    time = Faker::Date.between(from: '2014-09-23', to: Date.today)
 
-  # Attach the template image
-  photo.image.attach(io: File.open(TEMPLATE_IMAGE_PATH), filename: 'template_image.jpg', content_type: 'image/jpeg')
+    photo = Photo.new(name: name, created_at: time)
 
-  # Save the Photo entry
-  photo.save
+    # Attach the template image
+    photo.image.attach(io: File.open(TEMPLATE_IMAGE_PATH), filename: 'template_image.jpg', content_type: 'image/jpeg')
 
-  # This is needed because sqlite3 is so slow
-  sleep(0.5)
+    # Save the Photo entry
+    photo.save
+
+    # This is needed because sqlite3 is so slow
+    sleep(0.5)
+  end
 end
