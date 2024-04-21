@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# Hosting
+Hosted on Google Cloud Run [https://bmeviiimb12-homework-bbucsy-mmigih7niq-ey.a.run.app](https://bmeviiimb12-homework-bbucsy-mmigih7niq-ey.a.run.app)
