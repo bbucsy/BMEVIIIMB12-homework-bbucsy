@@ -17,9 +17,24 @@
 <div class="d-flex flex-column h-100">
 
   <nav class="navbar bg-light">
-    <div class="container-fluid">
+    <div class="container-sm">
       <%= link_to 'Photo album', photos_path, class: 'navbar-brand' %>
+      <form class="d-flex">
+        <%if user_signed_in? %>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_user.email %>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><%= link_to "Sign out", destroy_user_session_path, class: 'dropdown-item', data: { turbo_method: :delete } %> </li>
+            </ul>
+          </div>
+        <%else %>
+          <%= link_to 'Log In', new_user_session_url, class: 'btn btn-dark  btn-lg' %>
+        <%end %>
+      </form>
     </div>
+
   </nav>
 
   <main class="flex-shrink-0">
@@ -27,6 +42,12 @@
       <% if notice.present? %>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           <%= notice %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+      <% if alert.present? %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <%= alert %>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       <% end %>
