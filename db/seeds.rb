@@ -15,6 +15,9 @@ if Rails.env.development?
 
   puts "purging db"
   Photo.delete_all
+  User.delete_all
+
+  user = User.create(email: 'test.elek@example.com', password: 'Password123')
 
   100.times do |i|
 
@@ -25,7 +28,7 @@ if Rails.env.development?
     # Create a new Photo instance with the generated name
     time = Faker::Date.between(from: '2014-09-23', to: Date.today)
 
-    photo = Photo.new(name: name, created_at: time)
+    photo = Photo.new(name: name, created_at: time, user: user)
 
     # Attach the template image
     photo.image.attach(io: File.open(TEMPLATE_IMAGE_PATH), filename: 'template_image.jpg', content_type: 'image/jpeg')

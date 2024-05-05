@@ -1,7 +1,8 @@
-
 <h1>Photos</h1>
 
-<%= link_to "New photo", new_photo_path, class: "btn btn-primary" %>
+<% if user_signed_in? %>
+  <%= link_to "New photo", new_photo_path, class: "btn btn-primary" %>
+<% end %>
 <div id="photos">
   <table class="table table-striped table-responsive">
     <thead>
@@ -9,6 +10,7 @@
       <th scope="col">#</th>
       <%= sortable_table_header 'Name', :name, :photos_path, class: '' %>
       <%= sortable_table_header 'Uploaded at', :created_at, :photos_path, class: '' %>
+      <th>Uploader</th>
       <th></th>
     </tr>
     </thead>
@@ -25,9 +27,15 @@
           <%= photo.created_at.strftime('%Y-%m-%d %H:%M') %>
         </td>
         <td>
+          <%= photo.uploader %>
+        </td>
+        <td>
           <div class="d-grid gap-2 d-md-flex justify-content-center">
             <%= link_to 'Show', photo.image, class: 'btn btn-outline-success', target: '_blank' %>
-            <%= button_to "Delete", photo, method: :delete, class: 'btn btn-danger',  data: { turbo_confirm: "Are you sure you want to delete this?" }  %>
+            <% if user_signed_in? %>
+              <% confirm_text_extra = photo.user == current_user ? '': "Warning! you are deleting someone else's photo!  " %>
+              <%= button_to "Delete", photo, method: :delete, class: 'btn btn-danger', data: { turbo_confirm: confirm_text_extra + "Are you sure you want to delete this?" } %>
+            <% end %>
           </div>
         </td>
       </tr>

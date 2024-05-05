@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
     name: Rails.application.credentials.dig(:login, :username),
     password: Rails.application.credentials.dig(:login, :password),
   ) if Rails.env.production?
-
+  before_action :authenticate_user!, only: %i[new create destroy]
 
   # GET /photos or /photos.json
   def index
@@ -26,6 +26,7 @@ class PhotosController < ApplicationController
   # POST /photos or /photos.json
   def create
     @photo = Photo.new(photo_params)
+    @photo.user = current_user
 
     respond_to do |format|
       if @photo.save
