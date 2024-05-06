@@ -9,7 +9,7 @@ services:
     runtime: docker
     name: photo_album
     repo: https://github.com/bbucsy/BMEVIIIMB12-homework-bbucsy
-    plan: standard # Connecting to redis on Private network does not work with free instance
+    plan: starter # Connecting to redis on Private network does not work with free instance
     region: frankfurt
     autoDeploy: true
     envVars:
