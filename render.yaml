@@ -3,12 +3,13 @@ services:
     name: redis
     ipAllowList: [] # only allow internal connections
     plan: free # optional (defaults to starter)
+    region: frankfurt
     maxmemoryPolicy: allkeys-lfu # optional (defaults to allkeys-lru). Rails recommends allkeys-lfu as a default.
   - type: web
     runtime: docker
     name: photo_album
     repo: https://github.com/bbucsy/BMEVIIIMB12-homework-bbucsy
-    plan: free
+    plan: standard # Connecting to redis on Private network does not work with free instance
     region: frankfurt
     autoDeploy: true
     envVars:
