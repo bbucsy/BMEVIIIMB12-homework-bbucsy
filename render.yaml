@@ -1,7 +1,8 @@
 databases:
   - name: photo_db
+    ipAllowList: []
     databaseName: photoalbum_production
-    user: postgres
+    region: frankfurt
     plan: free
 
 services:
