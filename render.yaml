@@ -1,0 +1,15 @@
+services:
+  - type: web
+    runtime: docker
+    name: photo_album
+    repo: https://github.com/bbucsy/BMEVIIIMB12-homework-bbucsy
+    plan: free
+    region: frankfurt
+    autoDeploy: true
+    disk:
+      name: storage
+      mountPath: /rails/storage
+      sizeGB: 1
+    envVars:
+      - key: RAILS_MASTER_KEY
+        sync: false
