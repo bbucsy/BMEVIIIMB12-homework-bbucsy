@@ -48,6 +48,8 @@ login:
   password: pass
 ```
 
-This repo is configured to automatically deploy to Google Cloud Run. [https://bmeviiimb12-web-mmigih7niq-ey.a.run.app](https://bmeviiimb12-web-mmigih7niq-ey.a.run.app)
+This repo is configured to automatically deploy to [Render](https://render.com).
 
-If you want to make another instance you will need to set a new `RAILS_MASTER_KEY` in the container enviroment variables via Google Secret Manager. 
+The demo app can be accessed here: [https://photo-album-nxu2.onrender.com/](https://photo-album-nxu2.onrender.com/)
+
+If you want to make another instance you will need to set a new `RAILS_MASTER_KEY` in the container enviroment variables via Render console. 
