@@ -6,10 +6,6 @@ services:
     plan: free
     region: frankfurt
     autoDeploy: true
-    disk:
-      name: storage
-      mountPath: /rails/storage
-      sizeGB: 1
     envVars:
       - key: RAILS_MASTER_KEY
         sync: false
