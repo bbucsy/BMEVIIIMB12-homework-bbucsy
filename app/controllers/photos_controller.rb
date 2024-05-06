@@ -15,7 +15,7 @@ class PhotosController < ApplicationController
     end
     sort_direction = params[:direction].presence_in(%w[asc desc]) || "desc"
 
-    @photos = Photo.order("#{sort_column} #{sort_direction}").page(params[:page]).per(10)
+    @photos = Photo.with_attached_image.includes(:user).order("#{sort_column} #{sort_direction}").page(params[:page]).per(10)
   end
 
   # GET /photos/new

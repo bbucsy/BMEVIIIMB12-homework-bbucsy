@@ -118,6 +118,11 @@
     <orderEntry type="library" scope="PROVIDED" name="railties (v7.1.3.2, rbenv: 3.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.2.1, rbenv: 3.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v6.6.3.1, rbenv: 3.2.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redis (v5.2.0, rbenv: 3.2.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redis-actionpack (v5.4.0, rbenv: 3.2.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redis-client (v0.22.1, rbenv: 3.2.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redis-rack (v3.0.0, rbenv: 3.2.3) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redis-store (v1.10.0, rbenv: 3.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.9.0, rbenv: 3.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.5.2, rbenv: 3.2.3) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="representable (v3.2.0, rbenv: 3.2.3) [gem]" level="application" />

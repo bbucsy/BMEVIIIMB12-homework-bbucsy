@@ -1,4 +1,9 @@
 services:
+  - type: redis
+    name: redis
+    ipAllowList: [] # only allow internal connections
+    plan: free # optional (defaults to starter)
+    maxmemoryPolicy: allkeys-lfu # optional (defaults to allkeys-lru). Rails recommends allkeys-lfu as a default.
   - type: web
     runtime: docker
     name: photo_album
@@ -9,3 +14,8 @@ services:
     envVars:
       - key: RAILS_MASTER_KEY
         sync: false
+      - key: REDIS_URL # this must match the name of the environment variable used in production.rb
+        fromService:
+          type: redis
+          name: redis
+          property: connectionString
