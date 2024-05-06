@@ -24,7 +24,7 @@ To set up database run
     rails db:seed
 ```
 
-To run webapp in local run 
+To run webapp in local run. This will start a server and a PostgreSQL & Redis isntance via docker compose
 ```
     bin/dev
 ```

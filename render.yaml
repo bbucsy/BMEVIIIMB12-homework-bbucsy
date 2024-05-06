@@ -1,7 +1,13 @@
+databases:
+  - name: photo_db
+    databaseName: photoalbum_production
+    user: postgres
+    plan: free
+
 services:
   - type: redis
     name: redis
-    ipAllowList: [] # only allow internal connections
+    ipAllowList: [ ] # only allow internal connections
     plan: free # optional (defaults to starter)
     region: frankfurt
     maxmemoryPolicy: allkeys-lfu # optional (defaults to allkeys-lru). Rails recommends allkeys-lfu as a default.
@@ -20,3 +26,9 @@ services:
           type: redis
           name: redis
           property: connectionString
+      - key: DATABASE_URL
+        fromDatabase:
+          name: photo_db
+          property: connectionString
+      - key: WEB_CONCURRENCY
+        value: 2

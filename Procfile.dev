@@ -1,3 +1,3 @@
 web: env RUBY_DEBUG_OPEN=true bin/rails server
 js: yarn build --watch
-redis: docker run --rm --name photo-redis -p "6379:6379" redis
+db: docker compose -f docker-compose.dev.yml up
