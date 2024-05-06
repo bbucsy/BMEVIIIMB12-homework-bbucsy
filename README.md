@@ -46,7 +46,12 @@ secret_key_base: secret
 login:
   username: username
   password: pass
+
+gcs:
+  <your google service account credentials>
 ```
+
+Also you will need to change the google bucket id and project in `config/storage.yml`
 
 This repo is configured to automatically deploy to [Render](https://render.com).
 
